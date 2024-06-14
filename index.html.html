@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kullanıcı Kayıt Formu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"], input[type="date"], select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #5cb85c;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            const isim = document.forms["registerForm"]["isim"].value;
+            const soyisim = document.forms["registerForm"]["soyisim"].value;
+            const email = document.forms["registerForm"]["email"].value;
+            const sifre = document.forms["registerForm"]["sifre"].value;
+            const dogumTarihi = document.forms["registerForm"]["dogumTarihi"].value;
+            const cinsiyet = document.forms["registerForm"]["cinsiyet"].value;
+
+            if (isim === "" || soyisim === "" || email === "" || sifre === "" || dogumTarihi === "" || cinsiyet === "") {
+                alert("Tüm alanlar doldurulmalıdır.");
+                return false;
+            }
+
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!emailPattern.test(email)) {
+                alert("Geçerli bir e-posta adresi giriniz.");
+                return false;
+            }
+
+            if (sifre.length < 6) {
+                alert("Şifre en az 6 karakter olmalıdır.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Kullanıcı Kayıt Formu</h2>
+        <form name="registerForm" action="register.php" method="post" onsubmit="return validateForm()">
+            <label for="isim">İsim:</label>
+            <input type="text" id="isim" name="isim">
+            
+            <label for="soyisim">Soyisim:</label>
+            <input type="text" id="soyisim" name="soyisim">
+            
+            <label for="email">E-posta:</label>
+            <input type="email" id="email" name="email">
+            
+            <label for="sifre">Şifre:</label>
+            <input type="password" id="sifre" name="sifre">
+            
+            <label for="dogumTarihi">Doğum Tarihi:</label>
+            <input type="date" id="dogumTarihi" name="dogumTarihi">
+            
+            <label for="cinsiyet">Cinsiyet:</label>
+            <select id="cinsiyet" name="cinsiyet">
+                <option value="erkek">Erkek</option>
+                <option value="kadin">Kadın</option>
+                <option value="diger">Diğer</option>
+            </select>
+            
+            <input type="submit" value="Kaydol">
+        </form>
+    </div>
+</body>
+</html>
+```
+
